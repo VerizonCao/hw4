@@ -10,7 +10,7 @@ public class World : MonoBehaviour
     [SerializeField]
     private int scene = 0;
     public float distance = 0;
-    float speed = 100;
+    float speed = 10;
     int sceneLength = 1898; //scene length - Mech width in pixels
     bool mechWalking = false;
     public bool mechAlive = true;
