@@ -157,9 +157,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: -40}
-  m_SizeDelta: {x: 150, y: 100}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -50, y: -40}
+  m_SizeDelta: {x: 175, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &120735342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,7 +824,7 @@ MonoBehaviour:
   decayRate: 5
   text: {fileID: 1856512923}
   meter: {fileID: 2013032383}
-  mech: {fileID: 2144330157}
+  world: {fileID: 1728759614}
 --- !u!1 &364545139
 GameObject:
   m_ObjectHideFlags: 0
@@ -2697,7 +2697,7 @@ MonoBehaviour:
   decayRate: 2
   text: {fileID: 120735340}
   meter: {fileID: 673782250}
-  mech: {fileID: 2144330157}
+  world: {fileID: 1728759614}
 --- !u!1 &1014806881
 GameObject:
   m_ObjectHideFlags: 0
@@ -3429,7 +3429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0
-  mechWalking: 0
+  mechAlive: 1
   background: {fileID: 581071216}
   mech: {fileID: 427576680}
   meters:
@@ -3928,9 +3928,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100.000046, y: -39.999996}
-  m_SizeDelta: {x: 150, y: 100}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -60, y: -39.999996}
+  m_SizeDelta: {x: 175, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1856512925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4484,7 +4484,7 @@ MonoBehaviour:
   isLive: 1
   meterHealth: {fileID: 0}
   meterEnergy: {fileID: 0}
-  world: {fileID: 0}
+  world: {fileID: 1728759615}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

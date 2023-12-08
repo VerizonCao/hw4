@@ -84,6 +84,7 @@ public class World : MonoBehaviour
         Queue<int> scene3 = new Queue<int>();
         scene3.Enqueue(300);
         scene3.Enqueue(600);
+        scene3.Enqueue(999);
 
         checkpoint.Add(scene1);
         checkpoint.Add(scene2);
