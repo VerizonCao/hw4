@@ -19,10 +19,13 @@ public class Factory : MonoBehaviour
     [SerializeField]
     private World world;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Factory Start");
+        animator = GetComponent<Animator>();
     }
 
     public int healthChange(int value)
@@ -33,6 +36,18 @@ public class Factory : MonoBehaviour
             isLive = false;
         }
         return health;
+    }
+
+    public void moveToWalkMode(bool walk)
+    {
+        if(walk)
+        {
+            animator.SetInteger("state1", 1);
+        }
+        else
+        {
+            animator.SetInteger("state1", 0);
+        }
     }
 
     public int energyChange(int value)

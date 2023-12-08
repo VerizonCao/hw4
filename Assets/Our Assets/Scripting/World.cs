@@ -16,6 +16,8 @@ public class World : MonoBehaviour
     public GameObject mech;
     public GameObject [] meters;
 
+    private Factory factory;
+
     [SerializeField]
     private GameObject Canvas;
     private UserInput input;
@@ -55,6 +57,8 @@ public class World : MonoBehaviour
 
         input = Canvas.GetComponent<UserInput>();
         camStartPoint = cam.transform.position;
+        factory = mech.GetComponent<Factory>();
+
 
         /*
         int targetScene1 = 4;
@@ -180,6 +184,7 @@ public class World : MonoBehaviour
     public void setMechWalking(bool mechWalking)
     {
         this.mechWalking = mechWalking;
+        factory.moveToWalkMode(mechWalking);
     }
 
     void positionObjects(){

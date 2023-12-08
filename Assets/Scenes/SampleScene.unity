@@ -870,6 +870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 427576681}
   - component: {fileID: 427576682}
+  - component: {fileID: 427576683}
   m_Layer: 0
   m_Name: mech
   m_TagString: Untagged
@@ -908,6 +909,27 @@ MonoBehaviour:
   meterHealth: {fileID: 1010567883}
   meterEnergy: {fileID: 338696858}
   world: {fileID: 1728759615}
+--- !u!95 &427576683
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427576680}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 685a2f81d82ca5443bb150e5923ab4ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
