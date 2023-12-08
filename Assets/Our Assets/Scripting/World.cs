@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 
 // This file is used to record the world settings. 
@@ -36,6 +37,8 @@ public class World : MonoBehaviour
     private Camera cam;
 
     private Vector3 camStartPoint;
+
+    private int checkPointDiff = 20;
 
 
     //Zonhgheng add: Not figure it out with the canvas size, something like 1644, 1844 and 940, use unit? for now
@@ -161,7 +164,7 @@ public class World : MonoBehaviour
         distance+=speed*Time.deltaTime;
 
         //check if we meet the checkpoint
-        if(Mathf.Abs(distance - nextCheckPoint) < 2)
+        if(Mathf.Abs(distance - nextCheckPoint) < checkPointDiff)
         {
             //Trigger event
             setMechWalking(false);
@@ -170,6 +173,19 @@ public class World : MonoBehaviour
 
             //reset checkPoint
             if(checkpoint[scene].Count != 0)
+            {
+                nextCheckPoint = checkpoint[scene].Dequeue();
+            }
+            else
+            {
+                nextCheckPoint = -100; //move to next
+            }
+        }
+
+        //we missed this point
+        if (distance - nextCheckPoint > checkPointDiff)
+        {
+            if (checkpoint[scene].Count != 0)
             {
                 nextCheckPoint = checkpoint[scene].Dequeue();
             }
