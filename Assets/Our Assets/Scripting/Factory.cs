@@ -7,7 +7,6 @@ public class Factory : MonoBehaviour
 
     int health;
     int energy;
-    int scraps;
     bool isLive = true;
 
     // Start is called before the first frame update
@@ -34,13 +33,6 @@ public class Factory : MonoBehaviour
             isLive = false;
         }
         return energy;
-    }
-
-    public int scrapsChange(int value)
-    {
-        scraps += value;
-        Mathf.Max(scraps, 0);
-        return scraps;
     }
 
     // Update is called once per frame
