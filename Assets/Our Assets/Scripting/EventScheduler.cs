@@ -92,7 +92,7 @@ public class EventScheduler : MonoBehaviour
             else if (curInScene == 1)
             {
                 curInScene++;
-                return narrative.getScene2End();
+                return narrative.getScene3Ending();
             }
  
         }

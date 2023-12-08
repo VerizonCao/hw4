@@ -10,7 +10,7 @@ public class World : MonoBehaviour
     [SerializeField]
     private int scene = 0;
     public float distance = 0;
-    float speed = 10;
+    float speed = 100;
     int sceneLength = 1898; //scene length - Mech width in pixels
     bool mechWalking = false;
     public bool mechAlive = true;
@@ -86,8 +86,7 @@ public class World : MonoBehaviour
 
         Queue<int> scene3 = new Queue<int>();
         scene3.Enqueue(300);
-        scene3.Enqueue(600);
-        scene3.Enqueue(997);
+        scene3.Enqueue(1000);
 
         checkpoint.Add(scene1);
         checkpoint.Add(scene2);

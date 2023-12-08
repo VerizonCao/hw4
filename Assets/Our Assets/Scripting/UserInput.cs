@@ -259,7 +259,7 @@ public class UserInput : MonoBehaviour
             }else if (type == 2){
                 tmpContext.SetText(currentEvent.results[1]);
             }
-            backing.transform.localScale = new Vector3 (0.4f,0.7f,1f);
+            backing.transform.localScale = new Vector3 (0.5f,0.7f,1f);
             option1.SetActive(false);
             option2.SetActive(false);
         } 
