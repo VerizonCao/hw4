@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,10 +17,11 @@ public class UserInput : MonoBehaviour
     private GameObject option1;
     [SerializeField]
     private GameObject option2;
+    [SerializeField]
+    private GameObject backing;
 
     private Event currentEvent;
     private int index = 0;
-    private int eventNumNow = 0;
 
     [SerializeField]
     private GameObject nextBotton;
@@ -27,13 +29,20 @@ public class UserInput : MonoBehaviour
     private GameObject fowardButton;
     [SerializeField]
     private GameObject backwordButton;
+    [SerializeField]
+    private GameObject mech;   // only for the obj
+    private Factory mech_real;
 
+    [SerializeField]
+    private GameObject world;
+    private World world_real;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        mech_real = mech.GetComponent<Factory>();
+        world_real = world.GetComponent<World>();
         
     }
 
@@ -63,10 +72,15 @@ public class UserInput : MonoBehaviour
 
     }
 
-    // Render the next UI page
-    private void progress()
+    public void updateScene(int scene)
     {
-        Event d = scheduler.getNextEvent();
+        scheduler.resetCurEvent();
+    }
+
+    // Render the next UI page
+    public void progress(int scene)
+    {
+        Event d = scheduler.getNextEvent(scene);
         // render this events on the canvas
         if (d != null)
         {
@@ -96,9 +110,7 @@ public class UserInput : MonoBehaviour
                     option2.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText(d.options[1]);
                 }
                 
-            }
-
-            
+            }  
         }
         else
         {
@@ -137,21 +149,54 @@ public class UserInput : MonoBehaviour
         }
     }
 
+    private void clearAlltext()
+    {
+        currentEvent = null;
+        option1.SetActive(false);
+        option2.SetActive(false);
+        context.SetActive(false);
+        world_real.setMechWalking(true);
+        backing.SetActive(false);
+    }
+
+    private void enforceState(statChanges sc)
+    {
+        if (sc == null)
+        {
+            return;
+        }
+        mech_real.healthChange(sc.health);
+        mech_real.energyChange(sc.energy);
+        mech_real.distanceChange(sc.distance);
+    }
+
     public void ClickOption1()
     {
         Debug.Log("option 1");
+        if (currentEvent == null)
+        {
+            return;
+        }
+        enforceState(currentEvent.changes[0]);
         // now it's progress to next event
         option1.SetActive(false);
         option2.SetActive(false);
-        progress();
+        //progress();
+        clearAlltext();
         
     }
 
     public void ClickOption2()
     {
         Debug.Log("option 2");
+        if (currentEvent == null)
+        {
+            return;
+        }
+        enforceState(currentEvent.changes[1]);
         // now it's progress to next event
-        progress();
+        //progress();
+        clearAlltext();
         option1.SetActive(false);
         option2.SetActive(false);
     }
@@ -172,8 +217,10 @@ public class UserInput : MonoBehaviour
     {
         Debug.Log("next");
         //get next event or next wording(not in design yet)
-        progress();
+        //progress();
         //hide itself
+
+        clearAlltext();
         nextBotton.SetActive(false);
     }
 
@@ -181,6 +228,8 @@ public class UserInput : MonoBehaviour
     {
         TMPro.TextMeshProUGUI tmpContext = context.GetComponent<TMPro.TextMeshProUGUI>();
         tmpContext.SetText(currentEvent.text[index]);
+        context.SetActive(true);
+        backing.SetActive(true);
 
         //if it's at the last page of this event, show options
         if (currentEvent != null && index == currentEvent.text.Count - 1)

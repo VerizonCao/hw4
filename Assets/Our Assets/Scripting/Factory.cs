@@ -7,18 +7,30 @@ public class Factory : MonoBehaviour
 
     int health;
     int energy;
-    int scraps;
     bool isLive = true;
+    int distance;
+
+    [SerializeField]
+    private manageMeters meterHealth;
+
+    [SerializeField]
+    private manageMeters meterEnergy;
+
+    [SerializeField]
+    private World world;
+
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Factory Start");
+        animator = GetComponent<Animator>();
     }
 
     public int healthChange(int value)
     {
-        health += value;
+        meterHealth.value += value;
         if (health < 0)
         {
             isLive = false;
@@ -26,9 +38,21 @@ public class Factory : MonoBehaviour
         return health;
     }
 
+    public void moveToWalkMode(bool walk)
+    {
+        if(walk)
+        {
+            animator.SetInteger("state1", 1);
+        }
+        else
+        {
+            animator.SetInteger("state1", 0);
+        }
+    }
+
     public int energyChange(int value)
     {
-        energy += value;
+        meterEnergy.value += value;
         if (energy < 0)
         {
             isLive = false;
@@ -36,11 +60,10 @@ public class Factory : MonoBehaviour
         return energy;
     }
 
-    public int scrapsChange(int value)
+    public int distanceChange(int value)
     {
-        scraps += value;
-        Mathf.Max(scraps, 0);
-        return scraps;
+        world.changeDistance(value);
+        return distance;
     }
 
     // Update is called once per frame
