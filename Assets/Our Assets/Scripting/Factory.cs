@@ -10,6 +10,15 @@ public class Factory : MonoBehaviour
     bool isLive = true;
     int distance;
 
+    [SerializeField]
+    private manageMeters meterHealth;
+
+    [SerializeField]
+    private manageMeters meterEnergy;
+
+    [SerializeField]
+    private World world;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +27,7 @@ public class Factory : MonoBehaviour
 
     public int healthChange(int value)
     {
-        health += value;
+        meterHealth.value += value;
         if (health < 0)
         {
             isLive = false;
@@ -28,7 +37,7 @@ public class Factory : MonoBehaviour
 
     public int energyChange(int value)
     {
-        energy += value;
+        meterEnergy.value += value;
         if (energy < 0)
         {
             isLive = false;
@@ -38,7 +47,7 @@ public class Factory : MonoBehaviour
 
     public int distanceChange(int value)
     {
-        distance += value;
+        world.changeDistance(value);
         return distance;
     }
 

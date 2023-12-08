@@ -17,10 +17,11 @@ public class UserInput : MonoBehaviour
     private GameObject option1;
     [SerializeField]
     private GameObject option2;
+    [SerializeField]
+    private GameObject backing;
 
     private Event currentEvent;
     private int index = 0;
-    private int eventNumNow = 0;
 
     [SerializeField]
     private GameObject nextBotton;
@@ -71,10 +72,15 @@ public class UserInput : MonoBehaviour
 
     }
 
-    // Render the next UI page
-    private void progress()
+    public void updateScene(int scene)
     {
-        Event d = scheduler.getNextEvent();
+        scheduler.resetCurEvent();
+    }
+
+    // Render the next UI page
+    public void progress(int scene)
+    {
+        Event d = scheduler.getNextEvent(scene);
         // render this events on the canvas
         if (d != null)
         {
@@ -150,6 +156,7 @@ public class UserInput : MonoBehaviour
         option2.SetActive(false);
         context.SetActive(false);
         world_real.setMechWalking(true);
+        backing.SetActive(false);
     }
 
     private void enforceState(statChanges sc)
@@ -210,8 +217,10 @@ public class UserInput : MonoBehaviour
     {
         Debug.Log("next");
         //get next event or next wording(not in design yet)
-        progress();
+        //progress();
         //hide itself
+
+        clearAlltext();
         nextBotton.SetActive(false);
     }
 
@@ -219,6 +228,8 @@ public class UserInput : MonoBehaviour
     {
         TMPro.TextMeshProUGUI tmpContext = context.GetComponent<TMPro.TextMeshProUGUI>();
         tmpContext.SetText(currentEvent.text[index]);
+        context.SetActive(true);
+        backing.SetActive(true);
 
         //if it's at the last page of this event, show options
         if (currentEvent != null && index == currentEvent.text.Count - 1)

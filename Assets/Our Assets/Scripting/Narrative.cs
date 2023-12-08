@@ -18,6 +18,12 @@ public class statChanges
     }
 }
 
+public enum EventType
+{
+    must,
+    random
+}
+
 public class Event
 {
     public List<string> text;
@@ -25,6 +31,17 @@ public class Event
     public List<string> results;
     public List<statChanges> changes;
     // some stats result in the follow.
+    public EventType eventType;
+
+    public Event()
+    {
+        eventType = EventType.random;
+    }
+
+    public Event(EventType type)
+    {
+        eventType = type;
+    }
 
 }
 
@@ -32,27 +49,67 @@ public class Event
 public class Narrative : MonoBehaviour
 {
 
-    private List<Event> events;
+    private List<List<Event>> events;
+    private Event scene1Start;
+    private Event scene2Start;
+    private Event scene2End;
+    private Event scene3Start;
+    private Event scene3Ending;
 
     public int loadSize()
     {
         return events.Count;
     }
 
-    public Event getEventAtIndex(int index)
+    public Event getEventAtIndex(int scene, int index)
     {
-        return events[index];
+        return events[scene][index];
     }
+
+    public List<Event> getEventsAtScene(int scene)
+    {
+        return events[scene];
+    }
+
+    public Event getScene1Start()
+    {
+        return scene1Start;
+    }
+
+    public Event getScene2Start()
+    {
+        return scene2Start;
+    }
+
+    public Event getScene2End()
+    {
+        return scene2End;
+    }
+
+    public Event getScene3Start()
+    {
+        return scene3Start;
+    }
+
+    public Event getScene3Ending()
+    {
+        return scene3Ending;
+    }
+
+
 
     private void Awake()
     {
-        events = new List<Event>();
+        events = new List<List<Event>>();
+        events.Add(new List<Event>());  //scene 1
+        events.Add(new List<Event>());  //scene 2
+        events.Add(new List<Event>());  //scene 3
 
 
         //adding all the events
 
         //1 |Area 1
-        Event temp = new Event();
+        Event temp = new Event(EventType.must);
         temp.text = new List<string>();
         temp.text.Add("The old machine wakes up in a small inhabited area; it is a large mobile factory, and the factory starts heading towards the Northern Plains Biome.");
 
@@ -71,7 +128,8 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(0, 0, 160));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        //events[0].Add(temp);
+        scene1Start = temp;
 
         //2 random|Area 1
         temp = new Event();
@@ -91,7 +149,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(0, 0, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[0].Add(temp);
 
         //3 random|Area 1
         temp = new Event();
@@ -119,7 +177,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(0, 0, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[0].Add(temp);
 
         //4 random|Area 1
         temp = new Event();
@@ -143,7 +201,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(-30, -100, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[0].Add(temp);
 
         //5 random|Area 1
         temp = new Event();
@@ -165,7 +223,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(50, -75, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[0].Add(temp);
 
         //6 random|Area 1
         temp = new Event();
@@ -187,7 +245,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(-75, 50, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[0].Add(temp);
 
         //7 random|Area 1
         temp = new Event();
@@ -212,10 +270,10 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(0, 0, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[0].Add(temp);
 
         //8 Area 2
-        temp = new Event();
+        temp = new Event(EventType.must);
         temp.text = new List<string>();
         temp.text.Add("Due to the intense radiation from the power reactor, the mechanical system of the factory experienced a brief paralysis, and a system error triggered a sleep mode. It appears that the mechanical factory conducted a database check to rectify the system error, but most images were severely damaged. There are several intact images, one of which depicts a seed being planted underground. The sleep mode came to an end.");
 
@@ -232,7 +290,8 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(0, 0, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        //events[1].Add(temp);
+        scene2Start = temp;
 
         //9 random|Area 2
         temp = new Event();
@@ -256,7 +315,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(-200, 0, 320));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[1].Add(temp);
 
         //10 random|Area 2
         temp = new Event();
@@ -280,7 +339,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(-25, -100, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[1].Add(temp);
 
         //11 random|Area 2
         temp = new Event();
@@ -308,7 +367,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(-100, 0, 0));
         temp.changes.Add(new statChanges(0, -100, 0));
 
-        events.Add(temp);
+        events[1].Add(temp);
 
         //12 random|Area 2
         temp = new Event();
@@ -332,7 +391,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(-200, -25, -32));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[1].Add(temp);
 
         //13 random|Area 2
         temp = new Event();
@@ -352,7 +411,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(0, 100, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[1].Add(temp);
 
         //14 random|Area 2
         temp = new Event();
@@ -375,7 +434,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(-200, 0, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[1].Add(temp);
 
         //15 random|Area 2
         temp = new Event();
@@ -399,7 +458,7 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(0, 25, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[1].Add(temp);
 
         //16 random|Area 2
         temp = new Event();
@@ -423,10 +482,10 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(-100, 0, 250));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        events[1].Add(temp);
 
         //17 Area 2
-        temp = new Event();
+        temp = new Event(EventType.must);
         temp.text = new List<string>();
         temp.text.Add("Due to the intense radiation from the power reactor, the mechanical system of the factory experienced a brief paralysis, and a system error triggered a sleep mode. It appears that the mechanical factory conducted a database check to rectify the system error, but most images were severely damaged. There are several intact images, one of which depicts a seed being planted underground. The sleep mode came to an end.");
 
@@ -443,10 +502,11 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(0, 0, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        //events[1].Add(temp);
+        scene2End = temp;
 
         //18 Area 3
-        temp = new Event();
+        temp = new Event(EventType.must);
         temp.text = new List<string>();
         temp.text.Add("As everything was approaching its conclusion, the old factory encountered another severely damaged factory that was also on the brink of its final rest. The two machines locked eyes, as if communicating something profound without words");
 
@@ -470,10 +530,11 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(0, -50, 0));
         temp.changes.Add(new statChanges(0, -50, 0));
 
-        events.Add(temp);
+        //events[2].Add(temp);
+        scene3Start = temp;
 
         //final 
-        temp = new Event();
+        temp = new Event(EventType.must);
         temp.text = new List<string>();
         temp.text.Add("The factory traveled through a grove of trees, and eventually, the trees thinned out into a dusty expanse. As the mobile factory faced dwindling energy, body damage, and system crashes, it encountered an unexpected sight. Machines aren't supposed to experience illusions, but before its eyes appeared a lush grassland, where many similar factories were in a state of dormancy. Yes, everything was coming to an end. Finally, the factory reached a tree and entered into a deep slumber.");
 
@@ -490,7 +551,8 @@ public class Narrative : MonoBehaviour
         temp.changes.Add(new statChanges(0, 0, 0));
         temp.changes.Add(new statChanges(0, 0, 0));
 
-        events.Add(temp);
+        //events[2].Add(temp);
+        scene3Ending = temp;
     }
 
     void Start()
