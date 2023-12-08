@@ -9,9 +9,10 @@ public class World : MonoBehaviour
 
     int scene = 0;
     public float distance = 0;
-    float speed = 80;
-    int sceneLength = 1644; //scene length - Mech width in pixels
+    float speed = 10;
+    int sceneLength = 1898; //scene length - Mech width in pixels
     bool mechWalking = false;
+    public bool mechAlive = true;
     public GameObject background;
     public GameObject mech;
     public GameObject [] meters;
@@ -28,6 +29,8 @@ public class World : MonoBehaviour
     private GameObject scene2;
     [SerializeField]
     private GameObject scene3;
+
+    //private AudioSource [] music;
 
     [SerializeField]
     private Camera cam;
@@ -58,7 +61,6 @@ public class World : MonoBehaviour
         input = Canvas.GetComponent<UserInput>();
         camStartPoint = cam.transform.position;
         factory = mech.GetComponent<Factory>();
-
 
         /*
         int targetScene1 = 4;
@@ -94,7 +96,7 @@ public class World : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mechWalking){
+        if (mechWalking&&mechAlive){
             moveObjects();
             for (int i = 0; i < meters.Length; i++){
                 meters[i].GetComponent<manageMeters>().tick();
@@ -107,8 +109,6 @@ public class World : MonoBehaviour
                 //change scene
                 changeScene(scene);
                 setMechWalking(true);
-
-                //change background to scene
                 positionObjectsV2();
             } else {
                 //end event
@@ -187,20 +187,23 @@ public class World : MonoBehaviour
         factory.moveToWalkMode(mechWalking);
     }
 
-    void positionObjects(){
+    /*void positionObjects(){
         mech.transform.position = new Vector3 (distance, mech.transform.position.y , mech.transform.position.z);
-        background.transform.position = new Vector3 (-distance*((1844-940)/sceneLength), background.transform.position.y , background.transform.position.z);
-    }
+        background.transform.position = new Vector3 (-distance*((2048-940)/sceneLength), background.transform.position.y , background.transform.position.z);
+    }*/
 
 
     void positionObjectsV2()
     {
         mech.transform.position = new Vector3(mechStartPoint + (float)(distance / unitDistance), mech.transform.position.y, mech.transform.position.z);
-        if (distance - jumpDistance >= cameraCenterDistance)
+        /*if (distance - jumpDistance >= cameraCenterDistance)
         {
-            cam.transform.position = new Vector3(camStartPoint.x + (float)((distance - cameraCenterDistance - jumpDistance) / unitDistance), camStartPoint.y, camStartPoint.z);
+            //cam.transform.position = new Vector3(camStartPoint.x + (float)((distance - cameraCenterDistance - jumpDistance) / unitDistance), camStartPoint.y, camStartPoint.z);
             //always ask camera to move with player????
-        }
+        }*/
+        scene1.transform.position = new Vector3 (-14*(distance/sceneLength),scene1.transform.position.y,scene1.transform.position.z);
+        scene2.transform.position = new Vector3 (-14*(distance/sceneLength),scene2.transform.position.y,scene2.transform.position.z);
+        scene3.transform.position = new Vector3 (-14*(distance/sceneLength),scene3.transform.position.y,scene3.transform.position.z);
 
     }
 }

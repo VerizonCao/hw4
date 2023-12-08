@@ -111,7 +111,7 @@ public class Narrative : MonoBehaviour
         //1 |Area 1
         Event temp = new Event(EventType.must);
         temp.text = new List<string>();
-        temp.text.Add("The old machine wakes up in a small inhabited area; it is a large mobile factory, and the factory starts heading towards the Northern Plains Biome.");
+        temp.text.Add("The old machine wakes up in a small inhabited area; it is a large mobile factory, and the factory starts heading towards the Northern Plains Biome. However, the system detects an issue. If it goes straight through, it could cause extensive damage to crops in the area.");
 
         temp.options = new List<string>();
         temp.options.Add("A Proceed");
@@ -119,9 +119,9 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Travel Distance decreased");
+        temp.results.Add("Travel Distance decreased\n");
         temp.results[0] += "WARNING damage to human settlement detected";
-        temp.results.Add("Alternative route set");
+        temp.results.Add("Alternative route set\n");
         temp.results[1] += "Proceeding";
 
         temp.changes = new List<statChanges>();
@@ -162,20 +162,20 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Proceeding");
-        temp.results[0] += "Solarite charge partially replenished";
+        temp.results.Add("Proceeding\n");
+        temp.results[0] += "Solarite charge partially replenished\n";
         temp.results[0] += "WARNING extensive hull damage sustained";
-        temp.results.Add("Seeking shelter");
-        temp.results[1] += "Shelter found";
-        temp.results[1] += "...";
-        temp.results[1] += "...";
-        temp.results[1] += "Storm passed";
-        temp.results[1] += "Energy lost in waiting period";
-        temp.results[1] += "Resuming journey";
+        temp.results.Add("Seeking shelter\n");
+        temp.results[1] += "Shelter found\n";
+        temp.results[1] += "...\n";
+        temp.results[1] += "...\n";
+        temp.results[1] += "Storm passed\n";
+        temp.results[1] += "Energy lost in waiting period\n";
+        temp.results[1] += "Resuming journey\n";
 
         temp.changes = new List<statChanges>();
-        temp.changes.Add(new statChanges(0, 0, 0));
-        temp.changes.Add(new statChanges(0, 0, 0));
+        temp.changes.Add(new statChanges(-500, 50, 100));
+        temp.changes.Add(new statChanges(0, -300, 0));
 
         events[0].Add(temp);
 
@@ -190,11 +190,11 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Energy drain from excess weight");
-        temp.results[0] += "Superficial hull damage sustained";
-        temp.results[0] += "...";
-        temp.results[0] += "Human occupants have departed";
-        temp.results[0] += "Human occupants appear unharmed";
+        temp.results.Add("Energy drain from excess weight\n");
+        temp.results[0] += "Superficial hull damage sustained\n";
+        temp.results[0] += "...\n";
+        temp.results[0] += "Human occupants have departed\n";
+        temp.results[0] += "Human occupants appear unharmed\n";
         temp.results.Add("Proceeding");
 
         temp.changes = new List<statChanges>();
@@ -213,9 +213,9 @@ public class Narrative : MonoBehaviour
         temp.options.Add("B Ignore the deal");
 
         temp.results = new List<string>();
-        temp.results.Add("Structural integrity partially restored");
-        temp.results[0] += "WARNING charge decreasing at an accelerated rate";
-        temp.results[0] += "charge discrepency resolved";
+        temp.results.Add("Structural integrity partially restored\n");
+        temp.results[0] += "WARNING charge decreasing at an accelerated rate\n";
+        temp.results[0] += "charge discrepency resolved\n";
         temp.results.Add("Proceeding");
 
         temp.changes = new List<statChanges>();
@@ -235,8 +235,8 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Siphoning charge");
-        temp.results[0] += "WARNING components have been removed";
+        temp.results.Add("Siphoning charge\n");
+        temp.results[0] += "WARNING components have been removed\n";
         temp.results[0] += "Priority: Non-Essential";
         temp.results.Add("Proceeding");
 
@@ -257,11 +257,11 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Human Group A present");
-        temp.results[0] += "Standard wear and tear experienced";
-        temp.results[0] += "Standard maintanence resuming";
-        temp.results[0] += "Proceeding";
-        temp.results[0] += "...";
+        temp.results.Add("Human Group A present\n");
+        temp.results[0] += "Standard wear and tear experienced\n";
+        temp.results[0] += "Standard maintanence resuming\n";
+        temp.results[0] += "Proceeding\n";
+        temp.results[0] += "...\n";
         temp.results[0] += "Human Group A leaving sensor radius";
         temp.results.Add("Proceeding");
 
@@ -303,11 +303,11 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Proceeding");
-        temp.results[0] += "WARNING Structural damage sustained";
-        temp.results[0] += "WARNING Structural damage sustained";
+        temp.results.Add("Proceeding\n");
+        temp.results[0] += "WARNING Structural damage sustained\n";
+        temp.results[0] += "WARNING Structural damage sustained\n";
         temp.results[0] += "Obstacle navigation successful";
-        temp.results.Add("Alternative route set");
+        temp.results.Add("Alternative route set\n");
         temp.results[1] += "Proceeding";
 
         temp.changes = new List<statChanges>();
@@ -327,10 +327,10 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Commencing cleaning protocals");
-        temp.results[0] += "...";
-        temp.results[0] += "...";
-        temp.results[0] += "Cleaning complete";
+        temp.results.Add("Commencing cleaning protocals\n");
+        temp.results[0] += "...\n";
+        temp.results[0] += "...\n";
+        temp.results[0] += "Cleaning complete\n";
         temp.results[0] += "Damage sustained and charge lost within standard use parameters";
         temp.results.Add("Proceeding");
 
@@ -351,15 +351,15 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Proceeding");
-        temp.results[0] += "WARNING Structural damage sustained";
-        temp.results[0] += "WARNING Structural damage sustained";
+        temp.results.Add("Proceeding\n");
+        temp.results[0] += "WARNING Structural damage sustained\n";
+        temp.results[0] += "WARNING Structural damage sustained\n";
         temp.results[0] += "Obstacle navigation successful";
-        temp.results.Add("Proceeding");
-        temp.results[1] += "Obstacle detected... redirecting";
-        temp.results[1] += "Obstacle detected... redirecting";
-        temp.results[1] += "Obstacle detected... redirecting";
-        temp.results[1] += "Obstacle navigation successful";
+        temp.results.Add("Proceeding\n");
+        temp.results[1] += "Obstacle detected... redirecting\n";
+        temp.results[1] += "Obstacle detected... redirecting\n";
+        temp.results[1] += "Obstacle detected... redirecting\n";
+        temp.results[1] += "Obstacle navigation successful\n";
         temp.results[1] += "Energy efficiency decreased during traversal";
 
         temp.changes = new List<statChanges>();
@@ -379,11 +379,11 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Intervening in human combat situation");
-        temp.results[0] += "WARNING Hull damage sustained";
-        temp.results[0] += "WARNING structural integrity decreased";
-        temp.results[0] += "Scanning for humans";
-        temp.results[0] += "Human group A has left immediate vicinity";
+        temp.results.Add("Intervening in human combat situation\n");
+        temp.results[0] += "WARNING Hull damage sustained\n";
+        temp.results[0] += "WARNING structural integrity decreased\n";
+        temp.results[0] += "Scanning for humans\n";
+        temp.results[0] += "Human group A has left immediate vicinity\n";
         temp.results[0] += "Human group B ceasing hostilities";
         temp.results.Add("Proceeding");
         temp.changes = new List<statChanges>();
@@ -423,9 +423,9 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Defusal process started");
-        temp.results[0] += "...";
-        temp.results[0] += "WARNING Massive hull damage sustained";
+        temp.results.Add("Defusal process started\n");
+        temp.results[0] += "...\n";
+        temp.results[0] += "WARNING Massive hull damage sustained\n";
         temp.results[0] += "Defusal Process failed";
         temp.results.Add("Proceeding");
 
@@ -446,10 +446,10 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Defusal process started");
-        temp.results[0] += "...";
-        temp.results[0] += "...";
-        temp.results[0] += "Defusal process successful";
+        temp.results.Add("Defusal process started\n");
+        temp.results[0] += "...\n";
+        temp.results[0] += "...\n";
+        temp.results[0] += "Defusal process successful\n";
         temp.results[0] += "Excess charge siphoned";
         temp.results.Add("Proceeding");
 
@@ -470,11 +470,11 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Proceeding");
-        temp.results[0] += "WARNING Structural damage sustained";
-        temp.results[0] += "WARNING Structural damage sustained";
+        temp.results.Add("Proceeding\n");
+        temp.results[0] += "WARNING Structural damage sustained\n";
+        temp.results[0] += "WARNING Structural damage sustained\n";
         temp.results[0] += "Obstacle navigation successful";
-        temp.results.Add("Alternative route set");
+        temp.results.Add("Alternative route set\n");
         temp.results[1] += "Proceeding";
 
         temp.changes = new List<statChanges>();
@@ -515,14 +515,14 @@ public class Narrative : MonoBehaviour
 
 
         temp.results = new List<string>();
-        temp.results.Add("Attaching to fellow unit");
-        temp.results[0] += "Energy efficiency decreased";
+        temp.results.Add("Attaching to fellow unit\n");
+        temp.results[0] += "Energy efficiency decreased\n";
         temp.results[0] += "Proceeding";
-        temp.results.Add("Proceeding");
-        temp.results[1] += "...";
-        temp.results[1] += "OVERRIDE";
-        temp.results[1] += "Attaching to fellow unit";
-        temp.results[1] += "Energy efficiency decreased";
+        temp.results.Add("Proceeding\n");
+        temp.results[1] += "...\n";
+        temp.results[1] += "OVERRIDE\n";
+        temp.results[1] += "Attaching to fellow unit\n";
+        temp.results[1] += "Energy efficiency decreased\n";
         temp.results[1] += "Proceeding";
 
         temp.changes = new List<statChanges>();

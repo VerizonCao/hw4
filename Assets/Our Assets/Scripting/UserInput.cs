@@ -37,7 +37,6 @@ public class UserInput : MonoBehaviour
     private GameObject world;
     private World world_real;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +73,9 @@ public class UserInput : MonoBehaviour
 
     public void updateScene(int scene)
     {
+        currentEvent = null;
+        backing.SetActive(false);
+        clearAlltext();
         scheduler.resetCurEvent();
     }
 
@@ -86,7 +88,7 @@ public class UserInput : MonoBehaviour
         {
             currentEvent = d;
             index = 0;
-            renderContext();
+            renderContext(0);
 
             //check the text count
             if (currentEvent.text.Count > 1)
@@ -131,7 +133,7 @@ public class UserInput : MonoBehaviour
         if (index < currentEvent.text.Count - 1)
         {
             index++;
-            renderContext();
+            renderContext(0);
         }
     }
 
@@ -145,18 +147,18 @@ public class UserInput : MonoBehaviour
         if (index > 0)
         {
             index--;
-            renderContext();
+            renderContext(0);
         }
     }
 
     private void clearAlltext()
     {
-        currentEvent = null;
+        //currentEvent = null;
         option1.SetActive(false);
         option2.SetActive(false);
         context.SetActive(false);
         world_real.setMechWalking(true);
-        backing.SetActive(false);
+        //backing.SetActive(false);
     }
 
     private void enforceState(statChanges sc)
@@ -183,6 +185,7 @@ public class UserInput : MonoBehaviour
         option2.SetActive(false);
         //progress();
         clearAlltext();
+        renderContext(1);
         
     }
 
@@ -199,6 +202,7 @@ public class UserInput : MonoBehaviour
         clearAlltext();
         option1.SetActive(false);
         option2.SetActive(false);
+        renderContext(2);
     }
 
     public void ClickForward()
@@ -224,33 +228,44 @@ public class UserInput : MonoBehaviour
         nextBotton.SetActive(false);
     }
 
-    private void renderContext()
+    private void renderContext(int type)
     {
         TMPro.TextMeshProUGUI tmpContext = context.GetComponent<TMPro.TextMeshProUGUI>();
-        tmpContext.SetText(currentEvent.text[index]);
+        if (type == 0){
+            backing.transform.localScale = new Vector3 (1f,1f,1f);
+            tmpContext.SetText(currentEvent.text[index]);
+            //if it's at the last page of this event, show options
+            if (currentEvent != null && index == currentEvent.text.Count - 1)
+            {
+                option1.SetActive(true);
+                //show the options
+                option1.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText(currentEvent.options[0]);
+
+                if (currentEvent.options.Count > 1)
+                {
+                    option2.SetActive(true);
+                    option2.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText(currentEvent.options[1]);
+                }
+
+            }
+            else
+            {
+                option1.SetActive(false);
+                option2.SetActive(false);
+            }
+        }else{
+            if (type == 1){
+                tmpContext.SetText(currentEvent.results[0]);
+            }else if (type == 2){
+                tmpContext.SetText(currentEvent.results[1]);
+            }
+            backing.transform.localScale = new Vector3 (0.4f,0.7f,1f);
+            option1.SetActive(false);
+            option2.SetActive(false);
+        } 
         context.SetActive(true);
         backing.SetActive(true);
 
-        //if it's at the last page of this event, show options
-        if (currentEvent != null && index == currentEvent.text.Count - 1)
-        {
-            option1.SetActive(true);
-            //show the options
-            option1.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText(currentEvent.options[0]);
-
-
-
-            if (currentEvent.options.Count > 1)
-            {
-                option2.SetActive(true);
-                option2.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText(currentEvent.options[1]);
-            }
-
-        }
-        else
-        {
-            option1.SetActive(false);
-            option2.SetActive(false);
-        }
+        
     }
 }

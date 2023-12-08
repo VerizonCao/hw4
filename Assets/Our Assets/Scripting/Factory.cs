@@ -7,7 +7,7 @@ public class Factory : MonoBehaviour
 
     int health;
     int energy;
-    bool isLive = true;
+    public bool isLive = true;
     int distance;
 
     [SerializeField]
@@ -69,6 +69,8 @@ public class Factory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!isLive){
+            world.GetComponent<World>().mechAlive = false;
+        }
     }
 }

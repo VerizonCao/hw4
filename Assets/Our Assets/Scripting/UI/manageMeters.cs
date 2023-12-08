@@ -10,6 +10,7 @@ public class manageMeters : MonoBehaviour
     public int decayRate;
     public GameObject text;
     public GameObject meter;
+    public GameObject mech;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class manageMeters : MonoBehaviour
     public void tick(){
         value -= decayRate*Time.deltaTime;
         updateVisuals();
+        if (value <= 0) mech.GetComponent<Factory>().isLive = false;
     }
 
     public void changeNumber (){
@@ -32,7 +34,7 @@ public class manageMeters : MonoBehaviour
     }
 
     private void updateVisuals(){
-        text.GetComponent<TextMeshProUGUI>().text = value +"/"+max;
+        text.GetComponent<TextMeshProUGUI>().text = value +"/"+max+".000";
         meter.transform.localScale = new Vector3 (value/max,1,1);
     }
 }

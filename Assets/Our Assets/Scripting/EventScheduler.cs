@@ -57,6 +57,7 @@ public class EventScheduler : MonoBehaviour
     public void resetCurEvent()
     {
         curInScene = 0;
+        Debug.Log("event reset");
     }
 
 
