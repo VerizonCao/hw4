@@ -27,6 +27,11 @@ public class World : MonoBehaviour
     [SerializeField]
     private GameObject scene3;
 
+    [SerializeField]
+    private Camera cam;
+
+    private Vector3 camStartPoint;
+
 
     //Zonhgheng add: Not figure it out with the canvas size, something like 1644, 1844 and 940, use unit? for now
     // 1644 looks fine to me. There are some space outside of the camera, so I pick 1000 
@@ -38,6 +43,8 @@ public class World : MonoBehaviour
 
     List<Queue<int>> checkpoint;
     int nextCheckPoint;
+    int cameraCenterDistance = 300;
+    int jumpDistance = 0;
 
 
 
@@ -47,6 +54,7 @@ public class World : MonoBehaviour
     {
 
         input = Canvas.GetComponent<UserInput>();
+        camStartPoint = cam.transform.position;
 
         /*
         int targetScene1 = 4;
@@ -100,6 +108,7 @@ public class World : MonoBehaviour
                 positionObjectsV2();
             } else {
                 //end event
+                setMechWalking(false);
             }
             
         } /*else if (check if opening an event){
@@ -131,12 +140,14 @@ public class World : MonoBehaviour
         //update the nextCheckPoint
         nextCheckPoint = checkpoint[scene].Dequeue();
         input.updateScene(scene);
-
+        cam.transform.position = camStartPoint;
+        jumpDistance = 0;
 
     }
 
     public void changeDistance(int deltaDistance)
     {
+        jumpDistance += deltaDistance;
         distance += deltaDistance;
     }
 
@@ -180,5 +191,11 @@ public class World : MonoBehaviour
     void positionObjectsV2()
     {
         mech.transform.position = new Vector3(mechStartPoint + (float)(distance / unitDistance), mech.transform.position.y, mech.transform.position.z);
+        if (distance - jumpDistance >= cameraCenterDistance)
+        {
+            cam.transform.position = new Vector3(camStartPoint.x + (float)((distance - cameraCenterDistance - jumpDistance) / unitDistance), camStartPoint.y, camStartPoint.z);
+            //always ask camera to move with player????
+        }
+
     }
 }
