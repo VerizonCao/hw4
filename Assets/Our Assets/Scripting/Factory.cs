@@ -8,6 +8,7 @@ public class Factory : MonoBehaviour
     int health;
     int energy;
     bool isLive = true;
+    int distance;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,12 @@ public class Factory : MonoBehaviour
             isLive = false;
         }
         return energy;
+    }
+
+    public int distanceChange(int value)
+    {
+        distance += value;
+        return distance;
     }
 
     // Update is called once per frame

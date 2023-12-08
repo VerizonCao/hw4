@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -27,13 +28,20 @@ public class UserInput : MonoBehaviour
     private GameObject fowardButton;
     [SerializeField]
     private GameObject backwordButton;
+    [SerializeField]
+    private GameObject mech;   // only for the obj
+    private Factory mech_real;
 
+    [SerializeField]
+    private GameObject world;
+    private World world_real;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        mech_real = mech.GetComponent<Factory>();
+        world_real = world.GetComponent<World>();
         
     }
 
@@ -96,9 +104,7 @@ public class UserInput : MonoBehaviour
                     option2.GetComponentInChildren<TMPro.TextMeshProUGUI>().SetText(d.options[1]);
                 }
                 
-            }
-
-            
+            }  
         }
         else
         {
@@ -137,21 +143,53 @@ public class UserInput : MonoBehaviour
         }
     }
 
+    private void clearAlltext()
+    {
+        currentEvent = null;
+        option1.SetActive(false);
+        option2.SetActive(false);
+        context.SetActive(false);
+        world_real.setMechWalking(true);
+    }
+
+    private void enforceState(statChanges sc)
+    {
+        if (sc == null)
+        {
+            return;
+        }
+        mech_real.healthChange(sc.health);
+        mech_real.energyChange(sc.energy);
+        mech_real.distanceChange(sc.distance);
+    }
+
     public void ClickOption1()
     {
         Debug.Log("option 1");
+        if (currentEvent == null)
+        {
+            return;
+        }
+        enforceState(currentEvent.changes[0]);
         // now it's progress to next event
         option1.SetActive(false);
         option2.SetActive(false);
-        progress();
+        //progress();
+        clearAlltext();
         
     }
 
     public void ClickOption2()
     {
         Debug.Log("option 2");
+        if (currentEvent == null)
+        {
+            return;
+        }
+        enforceState(currentEvent.changes[1]);
         // now it's progress to next event
-        progress();
+        //progress();
+        clearAlltext();
         option1.SetActive(false);
         option2.SetActive(false);
     }

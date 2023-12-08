@@ -53,6 +53,11 @@ public class World : MonoBehaviour
         positionObjects();
     }
 
+    public void setMechWalking(bool mechWalking)
+    {
+        this.mechWalking = mechWalking;
+    }
+
     void positionObjects(){
         mech.transform.position = new Vector3 (distance, mech.transform.position.y , mech.transform.position.z);
         background.transform.position = new Vector3 (-distance*((1844-940)/sceneLength), background.transform.position.y , background.transform.position.z);

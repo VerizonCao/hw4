@@ -73,7 +73,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //2 random|Area 1
-        Event temp = new Event();
+        temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("It seems that humans are not welcoming the mobile factory; some even harbor hostility towards this old factory. As the factory is about to move out of human settlements, all that is seen are neatly arranged wreaths and gravestones side by side.");
 
@@ -93,7 +93,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //3 random|Area 1
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("Wandering through the ruins of a former human city, an alert is triggered by the old factory's sensors. An electrical storm is converging on its location. While this may be useful for gathering some excess charge for the journey ahead, the risk of structural damage is also incredibly high. Shelter might be advisable.");
 
@@ -121,7 +121,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //4 random|Area 1
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("An old factory encountered a group of destitute refugees while carrying out its final mission. On the way, they approached, requesting a ride for a short distance as they were too exhausted and in need of a brief rest.");
 
@@ -145,7 +145,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //5 random
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
@@ -172,7 +172,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //6 random
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
@@ -199,7 +199,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //7 random
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
@@ -226,7 +226,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //8 random
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
@@ -253,7 +253,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //9 random
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
@@ -280,7 +280,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
         
         //10 random
-        Event temp = new Event();
+        temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
@@ -307,7 +307,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //11 random
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
@@ -334,7 +334,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //12 random
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
@@ -361,7 +361,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //16 random
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
@@ -388,7 +388,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //17 
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
@@ -415,7 +415,7 @@ public class Narrative : MonoBehaviour
         events.Add(temp);
 
         //final 
-         Event temp = new Event();
+         temp = new Event();
         temp.text = new List<string>();
         temp.text.Add("");
         temp.text[0] += "";
