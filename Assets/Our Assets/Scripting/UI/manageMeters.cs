@@ -26,7 +26,7 @@ public class manageMeters : MonoBehaviour
     public void tick(){
         value -= decayRate*Time.deltaTime;
         updateVisuals();
-        if (value <= 0) Application.Quit();
+        if (value <= 0) world.GetComponent<World>().mechAlive = false;
     }
 
     public void changeNumber (){
